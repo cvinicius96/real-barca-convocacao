@@ -9,7 +9,7 @@
 <meta property="og:title" content="CONVOCAÇÃO REAL BARÇA">
 <meta property="og:description" content="Jogador, tem novidade te esperando. Clique e descubra.">
 <meta property="og:image" content="https://cvinicius96.github.io/real-barca-convocacao/teaser-preview.png">
-<meta property="og:url" content="https://cvinicius96.github.io/real-barca-convocacao/">
+<meta property="og:url" content="https://cvinicius96.github.io/real-barca-convocacao/?v=3">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <style>
@@ -108,7 +108,7 @@
     <h1>CONVOCAÇÃO</h1>
     <div class="stripe"></div>
     <p class="sub">Jogador, chegou tua vez.</p>
-    <p class="italic">O Real Barça tá te chamando — e essa não é convite não.</p>
+    <p class="italic">O Real Barça tá te chamando — e isso não é um convite!</p>
     <div class="tap-hint">toque na tela para continuar ➜</div>
   </div>
 
@@ -133,9 +133,9 @@
     <div class="stripe"></div>
     <div class="decision-wrap">
       <a class="btn btn-yes" href="https://wa.me/5571981929389?text=SIM%2C%20quero%20assinar%20com%20o%20Real%20Bar%C3%A7a!"
-         target="_blank" onclick="showOutcome('yes')">✍️ ASSINAR CONTRATO</a>
+         target="_blank" onclick="showOutcome('yes', event)">✍️ ASSINAR CONTRATO</a>
       <a class="btn btn-no" href="https://wa.me/5571981929389?text=N%C3%A3o%2C%20n%C3%A3o%20dessa%20vez."
-         target="_blank" onclick="showOutcome('no')">Não dessa vez!</a>
+         target="_blank" onclick="showOutcome('no', event)">Não dessa vez!</a>
     </div>
   </div>
 
@@ -183,9 +183,18 @@
     }
   });
 
-  function showOutcome(type) {
+  function showOutcome(type, ev) {
     slides.forEach(s => s.classList.remove('active'));
     document.getElementById('progress').style.display = 'none';
+
+    const numero2 = '5575982309165';
+    const texto = type === 'yes'
+      ? 'SIM, quero assinar com o Real Barça!'
+      : 'Não, não dessa vez.';
+    const link2 = 'https://wa.me/' + numero2 + '?text=' + encodeURIComponent(texto);
+    // abre a conversa com o segundo número também (o primeiro já abre pelo href do botão)
+    window.open(link2, '_blank');
+
     if (type === 'yes') {
       const el = document.getElementById('outcomeYes');
       el.classList.add('active');
